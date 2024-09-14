@@ -116,6 +116,12 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "flutter_svg",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/flutter_svg-2.0.10+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/bxston_pk/development/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -216,6 +222,12 @@
       "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/path-1.9.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "path_parsing",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/path_parsing-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "path_provider",
@@ -326,6 +338,24 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "vector_graphics",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/vector_graphics-1.1.11+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "vector_graphics_codec",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.11+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "vector_graphics_compiler",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.11+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
@@ -368,7 +398,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-09-14T07:03:04.283006Z",
+  "generated": "2024-09-14T09:29:03.279072Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }
