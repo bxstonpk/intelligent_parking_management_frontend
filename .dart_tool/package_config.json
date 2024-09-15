@@ -140,6 +140,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "get",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/get-4.6.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "google_fonts",
       "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/google_fonts-6.2.1",
       "packageUri": "lib/",
@@ -160,6 +166,12 @@
     {
       "name": "image",
       "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/image-4.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "internet_connection_checker",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/internet_connection_checker-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -398,7 +410,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-09-14T09:29:03.279072Z",
+  "generated": "2024-09-15T07:48:40.010003Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }
