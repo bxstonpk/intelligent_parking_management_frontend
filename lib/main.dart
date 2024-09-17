@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intelligent_parking_management_with_ai/views/splash_screen_ui.dart';
@@ -48,5 +47,25 @@ class _MyAppState extends State<MyApp> {
       ),
       home: SplashScreenUI(),
     );
+  }
+}
+
+class Environment {
+  static Color buttonColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Color(0xFFE8E8E8) // #E8E8E8
+        : Color(0xFF131313); // #131313
+  }
+
+  static Color shadowColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Color(0xFFC4C4C4) // #C4C4C4
+        : Color(0xFF353333); // #353333
+  }
+
+  static Color activeColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Color(0xFF353333) // #353333
+        : Color(0xFFE8E8E8); // #E8E8E8
   }
 }
