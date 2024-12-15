@@ -157,7 +157,7 @@ class _SplashScreenUI extends State<SplashScreenUI> {
                   child: CircularProgressIndicator(),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

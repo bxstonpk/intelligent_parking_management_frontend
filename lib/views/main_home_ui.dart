@@ -32,11 +32,11 @@ class _MainHomeUIState extends State<MainHomeUI> {
         children: [
           _currentShow[_currentIndex],
           Positioned(
-            bottom: 35, // Adjust this for height above the screen edge
-            left: 30, // Adjust to center the navbar horizontally
-            right: 30, // Adjust to center the navbar horizontally
+            bottom: MediaQuery.of(context).size.height * 0.03,
+            left: MediaQuery.of(context).size.width * 0.07,
+            right: MediaQuery.of(context).size.width * 0.07,
             child: Container(
-              width: 280,
+              width: MediaQuery.of(context).size.width * 0.86,
               decoration: BoxDecoration(
                 color: Environment.buttonColor(context),
                 borderRadius: BorderRadius.all(
@@ -47,18 +47,21 @@ class _MainHomeUIState extends State<MainHomeUI> {
                 ),
               ),
               padding: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 15,
+                horizontal: MediaQuery.of(context).size.width * 0.05,
+                vertical: MediaQuery.of(context).size.width * 0.03,
               ),
               child: GNav(
                 duration: Duration(milliseconds: 600),
-                iconSize: 20,
+                iconSize: MediaQuery.of(context).size.width * 0.045,
                 activeColor: Environment.activeColor(context),
-                tabBorderRadius: 40,
+                tabBorderRadius: MediaQuery.of(context).size.width * 0.06,
                 color: Environment.activeColor(context),
                 backgroundColor: Environment.buttonColor(context),
                 tabBackgroundColor: Color(0xFFADA3EB), // #ADA3EB
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 18),
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.07,
+                  vertical: MediaQuery.of(context).size.width * 0.04,
+                ),
                 selectedIndex: _currentIndex,
                 onTabChange: (index) {
                   setState(() {

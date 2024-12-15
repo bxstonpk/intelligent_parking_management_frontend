@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        backgroundColor: Colors.white,
+        canvasColor: Colors.white,
         textTheme: GoogleFonts.k2dTextTheme(
           ThemeData.light().textTheme.apply(
                 bodyColor: Colors.black,
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        backgroundColor: Colors.black,
+        canvasColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
         textTheme: GoogleFonts.k2dTextTheme(
           ThemeData.dark().textTheme.apply(
