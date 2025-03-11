@@ -47,6 +47,7 @@ class _HomeSubScreenUIState extends State<HomeSubScreenUI> {
               ),
             ),
           ),
+          // Title of page
           Positioned(
             top: MediaQuery.of(context).size.height * 0.08,
             left: MediaQuery.of(context).size.width * 0.07,
@@ -59,6 +60,7 @@ class _HomeSubScreenUIState extends State<HomeSubScreenUI> {
               ),
             ),
           ),
+          // Head Topic
           Positioned(
             top: MediaQuery.of(context).size.height * 0.125,
             left: MediaQuery.of(context).size.width * 0.07,
@@ -69,6 +71,7 @@ class _HomeSubScreenUIState extends State<HomeSubScreenUI> {
               ),
             ),
           ),
+          // Search bar
           Positioned(
             top: MediaQuery.of(context).size.height * 0.29,
             left: MediaQuery.of(context).size.width * 0.07,
