@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
               ),
         ),
       ),
-      home: MainHomeUI(),
+      home: SplashScreenUI(),
     );
   }
 }

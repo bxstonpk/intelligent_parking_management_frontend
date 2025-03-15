@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intelligent_parking_management_with_ai/views/subviews/viewsMembers/sign_in_ui.dart';
@@ -30,7 +32,7 @@ class _UserSubScreenUIState extends State<UserSubScreenUI> {
             Image.asset(
               'assets/images/iconapp.png',
               width: MediaQuery.of(context).size.width *
-                  0.9, // ปรับขนาดรูป 90% ของหน้าจอ
+                  0.8, // ปรับขนาดรูป 90% ของหน้าจอ
             ),
             SizedBox(height: 20),
             Text(

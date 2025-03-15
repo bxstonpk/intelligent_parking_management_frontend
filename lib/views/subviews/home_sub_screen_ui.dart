@@ -96,6 +96,7 @@ class _HomeSubScreenUIState extends State<HomeSubScreenUI> {
               ),
             ),
           ),
+          // Search button
           Positioned(
             top: MediaQuery.of(context).size.height * 0.29,
             right: MediaQuery.of(context).size.width * 0.07,

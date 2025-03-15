@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:intelligent_parking_management_with_ai/views/main_home_ui.dart';
+import 'package:intelligent_parking_management_with_ai/views/subviews/ProfilePage.dart';
 import 'package:intelligent_parking_management_with_ai/views/subviews/viewsMembers/sign_up_ui.dart';
 
 void main() {
@@ -33,7 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 232, 232, 232),
-    appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Color(0xFFADA3EB), // สีม่วงอ่อน
         leading: IconButton(
           icon: Icon(Icons.arrow_circle_left_outlined),
@@ -43,7 +45,6 @@ class _SignInScreenState extends State<SignInScreen> {
             Navigator.pop(context); // ไปหน้าก่อนหน้า
           },
         ),
-     
       ),
       body: Stack(
         children: [
@@ -55,28 +56,27 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             child: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Sign in to your \nAccount",
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Sign In to your \nAccount",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 5), // เพิ่มช่องว่างระหว่างข้อความ
-                  Text(
-                    "Enter your email and password to login",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white70,
+                    SizedBox(height: 5), // เพิ่มช่องว่างระหว่างข้อความ
+                    Text(
+                      "Enter your email and password to log in",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white70,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+                  ]),
             ),
           ),
 
@@ -162,7 +162,14 @@ class _SignInScreenState extends State<SignInScreen> {
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                              // เพิ่มโค้ดการล็อกอินที่นี่
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      MainHomeUI(isSignedIn: true),
+                                  // ส่งค่า isSignedIn เป็น true
+                                ),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFFB8A4F4), // สีม่วงอ่อน
@@ -204,7 +211,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => SignUpScreen()));
+                                          builder: (context) =>
+                                              SignUpScreen()));
                                   // Navigation ไปหน้าอื่น
                                 },
                                 child: Text(
