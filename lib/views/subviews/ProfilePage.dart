@@ -133,8 +133,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Colors.white,
                 ),
                 child: ClipOval(
-                  child: Image.network(
-                    'https://cdn.pixabay.com/photo/2025/03/12/09/53/fashion-9464657_1280.jpg', // รูปตัวอย่าง
+                  child: Image.asset(
+                    'assets/images/LGBTQ.png', // รูปตัวอย่าง
                     fit: BoxFit.cover,
                   ),
                 ),
