@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, prefer_final_fields, unused_field
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

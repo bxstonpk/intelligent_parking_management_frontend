@@ -1,4 +1,7 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class ParkingUi extends StatefulWidget {
   const ParkingUi({Key? key}) : super(key: key);
@@ -21,14 +24,20 @@ class _ParkingUiState extends State<ParkingUi> {
     'B03': false,
     'B04': true,
     'B05': true,
-    'B07': true,
+    'B07': false,
   };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
+        leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_circle_left_outlined,
+              size: 50,
+              color: Colors.black87,
+            ),
+            onPressed: Navigator.of(context).pop),
         title: const Text('AI-Powered Parking'),
         centerTitle: true,
         actions: [
@@ -136,38 +145,16 @@ class _ParkingUiState extends State<ParkingUi> {
     // กรองช่องจอดตามชั้นที่เลือก
     final selectedPrefix = selectedFloor == 1 ? 'A' : 'B';
 
-    // ดึงช่องจอด A สำหรับคอลัมน์ที่ 1
-    final aSlots = parkingSlots.entries
-        .where((entry) => entry.key.startsWith('A'))
+    // กรองเฉพาะช่องจอดที่ตรงกับชั้นที่เลือก
+    final selectedSlots = parkingSlots.entries
+        .where((entry) => entry.key.startsWith(selectedPrefix))
         .toList();
 
-    // ดึงช่องจอด B สำหรับคอลัมน์ที่ 2
-    final bSlots = parkingSlots.entries
-        .where((entry) => entry.key.startsWith('B'))
-        .toList();
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // คอลัมน์ซ้าย (ช่องจอด A)
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: aSlots
-                .map((slot) => buildParkingSlot(slot.key, slot.value))
-                .toList(),
-          ),
-        ),
-        // คอลัมน์ขวา (ช่องจอด B)
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: bSlots
-                .map((slot) => buildParkingSlot(slot.key, slot.value))
-                .toList(),
-          ),
-        ),
-      ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: selectedSlots
+          .map((slot) => buildParkingSlot(slot.key, slot.value))
+          .toList(),
     );
   }
 
@@ -179,7 +166,7 @@ class _ParkingUiState extends State<ParkingUi> {
           // ช่องจอดรถ
           Container(
             margin: const EdgeInsets.all(4.0),
-            width: 150,
+            width: 200,
             height: 70,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey, width: 1),
@@ -207,19 +194,29 @@ class _ParkingUiState extends State<ParkingUi> {
               top: 0,
               bottom: 0,
               child: Container(
-                width: 60,
+                width: 160,
                 decoration: const BoxDecoration(
-                  color: Color(0xFF3CBBB1),
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(4),
                     bottomRight: Radius.circular(4),
                   ),
                 ),
-                child: const Center(
-                  child: Icon(
-                    Icons.directions_car,
-                    color: Colors.white,
-                    size: 24,
+                child: Center(
+                  child: Transform.scale(
+                    scaleX:
+                        -1, // กลับรูปในแนวนอน (ถ้าต้องการกลับแนวตั้งให้ใช้ scaleY: -1)
+                    child: ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                        Color.fromARGB(255, 11, 126, 99), // เปลี่ยนเป็นสีเขียว
+                        BlendMode.srcIn, // ทำให้รูปเปลี่ยนสีทั้งหมด
+                      ),
+                      child: Image(
+                        image: AssetImage('assets/images/car.png'),
+                        width: 140,
+                        height: 140,
+                        fit: BoxFit.cover, // หรือ BoxFit.cover
+                      ),
+                    ),
                   ),
                 ),
               ),
