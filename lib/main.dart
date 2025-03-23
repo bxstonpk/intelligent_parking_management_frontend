@@ -28,6 +28,10 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         brightness: Brightness.light,
         canvasColor: Colors.white,
+        tabBarTheme: const TabBarTheme(
+          indicator: BoxDecoration(), // ปิด indicator
+          indicatorColor: Colors.transparent,
+        ),
         textTheme: GoogleFonts.k2dTextTheme(
           ThemeData.light().textTheme.apply(
                 bodyColor: Colors.black,
