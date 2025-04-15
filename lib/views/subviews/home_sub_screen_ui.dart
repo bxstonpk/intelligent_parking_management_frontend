@@ -1,7 +1,11 @@
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/Parking_Ui/parking_ui.dart';
-import 'notify_sub_screen_ui.dart';
+import 'package:intelligent_parking_management_with_ai/common/favorit_space.dart';
+import 'package:intelligent_parking_management_with_ai/common/notify_button.dart';
+import 'package:intelligent_parking_management_with_ai/common/search_bar.dart';
+import 'package:intelligent_parking_management_with_ai/common/search_button.dart';
+import 'package:intelligent_parking_management_with_ai/common/spot_area.dart';
 
 class HomeSubScreenUI extends StatefulWidget {
   const HomeSubScreenUI({super.key});
@@ -11,146 +15,211 @@ class HomeSubScreenUI extends StatefulWidget {
 }
 
 class _HomeSubScreenUIState extends State<HomeSubScreenUI> {
+  List<Map<String, String>> parkingList = [
+    {
+      'imageUrl': 'assets/images/sau.jpg',
+      'title': 'Southeast Asia University',
+      'subtitle': 'Engineer Building',
+    },
+    {
+      'imageUrl': 'assets/images/sau.jpg',
+      'title': 'Southeast Asia University',
+      'subtitle': 'Parking Terminal',
+    },
+  ];
+
+  List<Map<String, String>> favariteList = [
+    {
+      'imageUrl': 'assets/images/sau.jpg',
+      'title': 'Southeast Asia University',
+      'subtitle': 'Engineer Building',
+      'freeSpot': '5',
+    }
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.07,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // ** ปุ่ม Notify ด้านขวาบน **
-                Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      Get.to(NotifySubScreenUI());
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.purple[200],
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        Icons.notifications,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-
-                // ** Title **
-                Text(
-                  'Intelligent Parking...',
-                  style: TextStyle(fontSize: 25.0),
-                ),
-
-                SizedBox(height: 10),
-
-                // ** Head Topic **
-                Text(
-                  'Find Your \nParking Space',
-                  style: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold),
-                ),
-
-                SizedBox(height: 20),
-
-                // ** Search Bar **
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Search for parking...',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          right: MediaQuery.of(context).size.width * 0.07,
+                          child: NotifyButtonCommon(),
+                        ),
+                        Positioned(
+                          left: MediaQuery.of(context).size.width * 0.07,
+                          child: Container(
+                            child: Text(
+                              'Intelligent Parking...',
+                              style: TextStyle(
+                                fontSize: 25.0,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        // กดปุ่มค้นหา
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.purple[200],
-                          shape: BoxShape.circle,
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.05,
+                          left: MediaQuery.of(context).size.width * 0.07,
+                          child: Text(
+                            'Find Your \nParking Space',
+                            style: TextStyle(
+                              fontSize: 48.0,
+                            ),
+                          ),
                         ),
-                        child: Icon(Icons.search, color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 20),
-
-                // ** Section: Recept Places **
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Recept Places',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'See All',
-                        style: TextStyle(color: Colors.purple[200]),
-                      ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 10),
-
-                // ** รูปภาพที่กดได้ **
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ParkingUi()),
-                    );
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/images/sau.jpg',
-                      width: double.infinity,
-                      height: 150,
-                      fit: BoxFit.cover,
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.22,
+                          left: MediaQuery.of(context).size.width * 0.07,
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            height: MediaQuery.of(context).size.height * 0.07,
+                            child: SearchBarCommon(),
+                          ),
+                        ),
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.22,
+                          right: MediaQuery.of(context).size.width * 0.07,
+                          child: SearchButtonCommon(),
+                        ),
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.3,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              right: MediaQuery.of(context).size.width * 0.07,
+                              left: MediaQuery.of(context).size.width * 0.07,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Recept Places',
+                                      style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.06,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.29,
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        // Add your onPressed code here!
+                                      },
+                                      child: Text(
+                                        'See All',
+                                        style: TextStyle(
+                                          color: Color(0xFFADA3EB),
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.04,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.35,
+                          right: 0,
+                          left: 0,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * 0.04,
+                            ),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.26,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: List.generate(
+                                    parkingList.length,
+                                    (i) => SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.6,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.26,
+                                      child: SpotAreaCommon(
+                                        imageUrl: parkingList[i]['imageUrl']!,
+                                        title: parkingList[i]['title']!,
+                                        subtitle: parkingList[i]['subtitle']!,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.62,
+                          left: MediaQuery.of(context).size.width * 0.07,
+                          child: Text(
+                            'Favorite Space',
+                            style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.06,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.67,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width * 0.05,
+                                right:
+                                    MediaQuery.of(context).size.width * 0.05),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.17,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: List.generate(
+                                    favariteList.length,
+                                    (i) => SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.92,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.22,
+                                      child: FavoritSpaceCommon(
+                                        imageUrl: favariteList[i]['imageUrl']!,
+                                        title: favariteList[i]['title']!,
+                                        subtitle: favariteList[i]['subtitle']!,
+                                        freeSpot: favariteList[i]['freeSpot'],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-
-                SizedBox(height: 20),
-
-                // ** Section: Recept Spaces **
-                Text(
-                  'Recept Spaces',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                SizedBox(height: 20),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

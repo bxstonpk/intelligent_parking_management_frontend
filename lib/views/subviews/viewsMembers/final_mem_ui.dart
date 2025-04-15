@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
+/* // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:intelligent_parking_management_with_ai/views/main_home_ui.dart';
@@ -154,3 +154,4 @@ class _FinalMemUIScreenState extends State<FinalMemUIScreen> {
 
   
 }
+ */

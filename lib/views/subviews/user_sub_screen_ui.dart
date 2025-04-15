@@ -1,8 +1,9 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/viewsMembers/sign_in_ui.dart';
+import 'package:intelligent_parking_management_with_ai/common/button_route.dart';
+import 'package:intelligent_parking_management_with_ai/screens/sign_in_screen/sign_in_ui.dart';
 
 class UserSubScreenUI extends StatefulWidget {
   const UserSubScreenUI({super.key});
@@ -15,55 +16,59 @@ class _UserSubScreenUIState extends State<UserSubScreenUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Welcome to Computer Eng. Project',
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0, // ไม่มีเงาใต้ AppBar
-        centerTitle: true, // จัดกึ่งกลางชื่อ
-        toolbarHeight: 100, // กำหนดความสูงของ AppBar (สามารถปรับได้ตามต้องการ)
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: SafeArea(
+        child: Stack(
           children: [
-            Image.asset(
-              'assets/images/iconapp.png',
-              width: MediaQuery.of(context).size.width *
-                  0.8, // ปรับขนาดรูป 90% ของหน้าจอ
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Intelligent Parking Management with\nArtificial Intelligent',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignInScreen()));
-                // Navigation ไปหน้าอื่น
-              },
-              child: Text(
-                "Let's Go!",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+            Positioned(
+              left: MediaQuery.of(context).size.width * 0.07,
+              right: MediaQuery.of(context).size.width * 0.07,
+              child: Container(
+                child: Center(
+                  child: Text(
+                    'Welcome to Computer Eng. Project',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                    ),
+                  ),
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFADA3EB),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 10),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.20,
+              left: MediaQuery.of(context).size.width * 0.1,
+              right: MediaQuery.of(context).size.width * 0.1,
+              child: Image.asset(
+                'assets/images/iconapp.png',
+                width: MediaQuery.of(context).size.width * 0.8,
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.55,
+              left: MediaQuery.of(context).size.width * 0.1,
+              child: Row(
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        'Intelligent Parking\nManagement with\nArtificial Intelligent',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.08,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.73,
+              left: MediaQuery.of(context).size.width * 0.1,
+              right: MediaQuery.of(context).size.width * 0.1,
+              child: ButtonrouteCommon(
+                title: 'Let\'s Go!',
+                route: SignInScreen(),
               ),
             ),
           ],
