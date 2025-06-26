@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   connectivity_plus: ^6.0.5
+  cupertino_calendar_picker: ^2.2.5
   cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
@@ -39,6 +40,7 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.2.1
   google_nav_bar: ^5.0.6
+  intl: ^0.19.0
   salomon_bottom_bar: ^3.3.2
 
 flutter_launcher_icons:

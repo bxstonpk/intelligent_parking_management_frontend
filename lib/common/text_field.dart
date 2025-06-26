@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intelligent_parking_management_with_ai/utils/color_res.dart';
 
 class TextFieldCommon extends StatefulWidget {
@@ -8,6 +9,8 @@ class TextFieldCommon extends StatefulWidget {
   final String? hintText;
   final bool? password;
   final bool? isPassword;
+  final Icon? icon;
+  final Widget? onPressed;
 
   const TextFieldCommon({
     super.key,
@@ -15,6 +18,8 @@ class TextFieldCommon extends StatefulWidget {
     required this.hintText,
     this.password,
     this.isPassword = false,
+    this.icon,
+    this.onPressed,
   });
 
   @override
@@ -40,16 +45,23 @@ class _TextFieldCommonState extends State<TextFieldCommon> {
         hintStyle: TextStyle(
           color: ColorRes.backSoftColor,
         ),
-        suffixIcon: widget.password == true
+        suffixIcon: widget.password == true || widget.icon != null
             ? IconButton(
                 icon: Icon(
-                  _isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-                  color: ColorRes.backSoftColor,
+                  widget.password == true
+                      ? (_isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off)
+                      : widget.icon!.icon,
                 ),
                 onPressed: () {
                   setState(
                     () {
-                      _isPasswordVisible = !_isPasswordVisible;
+                      if (widget.onPressed != null) {
+                        Get.to(widget.onPressed);
+                      } else {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      }
                     },
                   );
                 },

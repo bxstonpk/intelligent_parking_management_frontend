@@ -1,16 +1,17 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:intelligent_parking_management_with_ai/views/subviews/bookmark_sub_screen_ui.dart';
 import 'package:intelligent_parking_management_with_ai/views/subviews/home_sub_screen_ui.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/like_sub_screen_ui.dart';
 import 'package:intelligent_parking_management_with_ai/views/subviews/ProfilePage.dart'
     as profile;
 import 'package:intelligent_parking_management_with_ai/views/subviews/user_sub_screen_ui.dart'
     as user;
 
 class MainHomeUI extends StatefulWidget {
-  final bool isSignedIn; // เพิ่มตัวแปรเช็คการล็อกอิน
+  final bool isSignedIn;
   const MainHomeUI({super.key, this.isSignedIn = false});
 
   @override
@@ -24,11 +25,8 @@ class _MainHomeUIState extends State<MainHomeUI> {
   Widget build(BuildContext context) {
     List _currentShow = [
       HomeSubScreenUI(),
-      LikeSubScreenUI(),
       BookmarkSubScreenUI(),
-      widget.isSignedIn
-          ? profile.ProfilePage()
-          : user.UserSubScreenUI(), // เปลี่ยนเป็น ProfilePage ถ้า Sign In
+      widget.isSignedIn ? profile.ProfilePage() : user.UserSubScreenUI(),
     ];
 
     return Scaffold(
@@ -70,10 +68,6 @@ class _MainHomeUIState extends State<MainHomeUI> {
                 },
                 tabs: [
                   GButton(icon: FontAwesomeIcons.house),
-                  GButton(
-                      icon: _currentIndex == 1
-                          ? FontAwesomeIcons.solidHeart
-                          : FontAwesomeIcons.heart),
                   GButton(
                       icon: _currentIndex == 2
                           ? FontAwesomeIcons.solidBookmark

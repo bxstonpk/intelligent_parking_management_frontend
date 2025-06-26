@@ -74,6 +74,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "cupertino_calendar_picker",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/cupertino_calendar_picker-2.2.5",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8",
       "packageUri": "lib/",
@@ -114,6 +120,12 @@
       "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/flutter_lints-3.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
+    },
+    {
+      "name": "flutter_localizations",
+      "rootUri": "file:///Users/bxston_pk/development/flutter/packages/flutter_localizations",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
     },
     {
       "name": "flutter_secure_storage",
@@ -210,6 +222,12 @@
       "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/image-4.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.15"
+    },
+    {
+      "name": "intl",
+      "rootUri": "file:///Users/bxston_pk/.pub-cache/hosted/pub.dev/intl-0.19.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "js",
@@ -458,7 +476,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2025-04-13T16:24:10.178617Z",
+  "generated": "2025-06-26T16:26:46.747233Z",
   "generator": "pub",
   "generatorVersion": "3.5.3",
   "flutterRoot": "file:///Users/bxston_pk/development/flutter",

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_import, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, use_key_in_widget_constructors, sort_child_properties_last, unnecessary_null_comparison, unused_local_variable
+// ignore_for_file: prefer_const_constructors, unused_import, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, use_key_in_widget_constructors, sort_child_properties_last, unnecessary_null_comparison, unused_local_variable, unnecessary_import
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +15,6 @@ import 'package:intelligent_parking_management_with_ai/services/user_api.dart';
 import 'package:intelligent_parking_management_with_ai/utils/color_res.dart';
 import 'package:intelligent_parking_management_with_ai/views/main_home_ui.dart';
 import 'package:intelligent_parking_management_with_ai/views/subviews/ProfilePage.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/viewsMembers/sign_up_ui.dart';
 
 class SignInUI extends StatelessWidget {
   @override
@@ -64,11 +63,6 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.07,
-            left: MediaQuery.of(context).size.width * 0.05,
-            child: BackButtonCommon(),
-          ),
-          Positioned(
             top: MediaQuery.of(context).size.height * 0.2,
             left: MediaQuery.of(context).size.width * 0.1,
             right: MediaQuery.of(context).size.width * 0.1,
@@ -76,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Column(
                 children: [
                   Text(
-                    "Sign In to your\n account",
+                    "Sign In your account",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 36,
@@ -219,7 +213,6 @@ class _SignInScreenState extends State<SignInScreen> {
                               }
                             },
                           ).catchError((error) {
-                            print('Error: $error');
                             Get.snackbar(
                               'WARNING',
                               'Login failed',
