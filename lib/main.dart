@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intelligent_parking_management_with_ai/data/sign_up_data.dart';
 import 'package:intelligent_parking_management_with_ai/data/user_data.dart';
-import 'package:intelligent_parking_management_with_ai/views/main_home_ui.dart';
-import 'package:intelligent_parking_management_with_ai/views/splash_screen_ui.dart';
+import 'package:intelligent_parking_management_with_ai/screens/parking_screen/view_parking_ui.dart';
+import 'package:intelligent_parking_management_with_ai/screens/profile_screen/profile_ui.dart';
+import 'package:intelligent_parking_management_with_ai/screens/sign_up_screen/finally.dart';
+import 'package:intelligent_parking_management_with_ai/screens/sign_up_screen/gender.dart';
+import 'package:intelligent_parking_management_with_ai/screens/sign_up_screen/sign_up_ui.dart';
 import 'package:get/get.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/home_sub_screen_ui.dart';
+import 'package:intelligent_parking_management_with_ai/screens/splash_screen/splash_screen_ui.dart';
 
 void main() {
   // Get Controller Data

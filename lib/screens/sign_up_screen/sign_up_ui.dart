@@ -9,6 +9,8 @@ import 'package:intelligent_parking_management_with_ai/data/sign_up_data.dart';
 import 'package:intelligent_parking_management_with_ai/screens/sign_in_screen/sign_in_ui.dart';
 import 'package:intelligent_parking_management_with_ai/screens/sign_up_screen/information.dart';
 import 'package:intelligent_parking_management_with_ai/utils/color_res.dart';
+import 'package:intelligent_parking_management_with_ai/utils/format_res.dart';
+import 'package:intelligent_parking_management_with_ai/utils/notify_res.dart';
 
 class SignUpUI extends StatefulWidget {
   const SignUpUI({super.key});
@@ -154,35 +156,17 @@ class _SignUpUIState extends State<SignUpUI> {
                     height: MediaQuery.of(context).size.height * 0.06,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (emailController.text.isEmpty) {
+                        NotifyRes.showEmailEmpty(emailController.text);
+                        NotifyRes.showPasswordInvalid(passwordController.text);
+                        NotifyRes.showEmailInvalid(emailController.text);
+                        NotifyRes.showPasswordInvalid(passwordController.text);
+                        NotifyRes.showPasswordsNotMatch(passwordController.text,
+                            confirmPasswordController.text);
+                        if (!isAgreed) {
                           if (!Get.isSnackbarOpen) {
                             Get.snackbar(
                               'WARNING',
-                              'Please enter your email',
-                              backgroundColor: Colors.red,
-                              colorText: Colors.white,
-                              duration: Duration(
-                                milliseconds: 1000,
-                              ),
-                            );
-                          }
-                        } else if (passwordController.text.isEmpty) {
-                          if (!Get.isSnackbarOpen) {
-                            Get.snackbar(
-                              'WARNING',
-                              'Please enter your password',
-                              backgroundColor: Colors.red,
-                              colorText: Colors.white,
-                              duration: Duration(
-                                milliseconds: 1000,
-                              ),
-                            );
-                          }
-                        } else if (confirmPasswordController.text.isEmpty) {
-                          if (!Get.isSnackbarOpen) {
-                            Get.snackbar(
-                              'WARNING',
-                              'Please confirm your password',
+                              'Please agree to the terms and conditions',
                               backgroundColor: Colors.red,
                               colorText: Colors.white,
                               duration: Duration(
@@ -194,7 +178,7 @@ class _SignUpUIState extends State<SignUpUI> {
                           signUpData.email.value = emailController.text;
                           signUpData.password.value = passwordController.text;
 
-                          Get.to(Information());
+                          Get.to(() => Information());
                         }
                       },
                       child: ButtonApiCommon(

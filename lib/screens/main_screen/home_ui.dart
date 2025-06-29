@@ -2,19 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:intelligent_parking_management_with_ai/common/favorit_space.dart';
-import 'package:intelligent_parking_management_with_ai/common/notify_button.dart';
 import 'package:intelligent_parking_management_with_ai/common/search_bar.dart';
 import 'package:intelligent_parking_management_with_ai/common/search_button.dart';
 import 'package:intelligent_parking_management_with_ai/common/spot_area.dart';
 
-class HomeSubScreenUI extends StatefulWidget {
-  const HomeSubScreenUI({super.key});
+class HomeUI extends StatefulWidget {
+  const HomeUI({super.key});
 
   @override
-  State<HomeSubScreenUI> createState() => _HomeSubScreenUIState();
+  State<HomeUI> createState() => _HomeUIState();
 }
 
-class _HomeSubScreenUIState extends State<HomeSubScreenUI> {
+class _HomeUIState extends State<HomeUI> {
   List<Map<String, String>> parkingList = [
     {
       'imageUrl': 'assets/images/sau.jpg',
@@ -50,10 +49,6 @@ class _HomeSubScreenUIState extends State<HomeSubScreenUI> {
                     height: MediaQuery.of(context).size.height,
                     child: Stack(
                       children: [
-                        Positioned(
-                          right: MediaQuery.of(context).size.width * 0.07,
-                          child: NotifyButtonCommon(),
-                        ),
                         Positioned(
                           left: MediaQuery.of(context).size.width * 0.07,
                           child: Container(
@@ -160,6 +155,9 @@ class _HomeSubScreenUIState extends State<HomeSubScreenUI> {
                                         imageUrl: parkingList[i]['imageUrl']!,
                                         title: parkingList[i]['title']!,
                                         subtitle: parkingList[i]['subtitle']!,
+                                        parkingArea:
+                                            '${parkingList[i]['subtitle']}',
+                                        currentIndex: i,
                                       ),
                                     ),
                                   ),

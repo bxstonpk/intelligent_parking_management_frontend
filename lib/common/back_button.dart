@@ -1,13 +1,18 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_if_null_operators
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intelligent_parking_management_with_ai/screens/main_screen/main_screen_ui.dart';
 import 'package:intelligent_parking_management_with_ai/utils/color_res.dart';
 
 class BackButtonCommon extends StatelessWidget {
   final Color? color;
+  final Widget? child;
+  final Color? iconColor;
+  final Icon? icon;
 
-  const BackButtonCommon({super.key, this.color});
+  const BackButtonCommon(
+      {super.key, this.color, this.child, this.iconColor, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class BackButtonCommon extends StatelessWidget {
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color: color ?? ColorRes.primaryColor,
+            color: color != null ? color : ColorRes.greyColor,
             shape: BoxShape.circle,
             border: Border.all(
               color: ThemeData.dark().brightness == Brightness.light
@@ -31,8 +36,8 @@ class BackButtonCommon extends StatelessWidget {
             ),
           ),
           child: Icon(
-            Icons.arrow_back_outlined,
-            color: ColorRes.whiteColor,
+            icon != null ? icon?.icon : Icons.arrow_back,
+            color: iconColor ?? ColorRes.backSoftColor,
           ),
         ),
       ),

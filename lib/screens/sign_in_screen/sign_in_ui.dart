@@ -10,11 +10,13 @@ import 'package:intelligent_parking_management_with_ai/common/button_route.dart'
 import 'package:intelligent_parking_management_with_ai/common/text_field.dart';
 import 'package:intelligent_parking_management_with_ai/data/user_data.dart';
 import 'package:intelligent_parking_management_with_ai/models/user_model.dart';
+import 'package:intelligent_parking_management_with_ai/screens/main_screen/main_screen_ui.dart';
 import 'package:intelligent_parking_management_with_ai/screens/sign_up_screen/sign_up_ui.dart';
 import 'package:intelligent_parking_management_with_ai/services/user_api.dart';
+import 'package:intelligent_parking_management_with_ai/utils/Pref_res.dart';
 import 'package:intelligent_parking_management_with_ai/utils/color_res.dart';
-import 'package:intelligent_parking_management_with_ai/views/main_home_ui.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/ProfilePage.dart';
+import 'package:intelligent_parking_management_with_ai/utils/format_res.dart';
+import 'package:intelligent_parking_management_with_ai/utils/token_res.dart';
 
 class SignInUI extends StatelessWidget {
   @override
@@ -59,6 +61,40 @@ class _SignInScreenState extends State<SignInScreen> {
               height: MediaQuery.of(context).size.height * 0.50,
               decoration: BoxDecoration(
                 color: ColorRes.greyColor,
+              ),
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.07,
+            left: MediaQuery.of(context).size.width * 0.05,
+            child: Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: () {
+                  Get.offAll(
+                    MainHomeUI(
+                      currentIndex: 2,
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: ColorRes.primaryColor,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: ThemeData.dark().brightness == Brightness.light
+                          ? ColorRes.backSoftColor
+                          : ColorRes.stockColor,
+                      width: 2,
+                    ),
+                  ),
+                  child: Icon(
+                    Icons.arrow_back_outlined,
+                    color: ColorRes.whiteColor,
+                  ),
+                ),
               ),
             ),
           ),
@@ -125,6 +161,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   TextFieldCommon(
                     controller: emailController,
                     hintText: 'Email',
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
@@ -167,60 +204,121 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             );
                           }
-                        } else {
-                          // Create a User object with the entered email and password
-                          User user = User(
-                            email: emailController.text.trim(),
-                            password: passwordController.text.trim(),
-                          );
-
-                          // Call your API or perform login action here
-                          UserApi.LoginAPI(user).then(
-                            (value) {
-                              if (value[0].message == "1") {
-                                userData.setId(value[0].id ?? 0);
-                                userData.setEmail(value[0].email ?? '');
-                                userData.setUsername(value[0].username ?? '');
-                                userData.userFullname.value =
-                                    value[0].userFullname ?? '';
-                                userData.userBirthday.value =
-                                    value[0].userBirthday ?? '';
-                                userData.userGender.value =
-                                    value[0].userGender ?? 0;
-                                userData.userProfile.value =
-                                    value[0].userProfile ?? '';
-
-                                Get.defaultDialog(
-                                  title: 'Login Success',
-                                  middleText: 'Welcome back, ${user.id}',
-                                  onConfirm: () {
-                                    Get.offAll(
-                                      MainHomeUI(),
-                                    );
-                                  },
-                                  textConfirm: 'OK',
-                                );
-                              } else {
-                                Get.snackbar(
-                                  'WARNING',
-                                  'Invalid email or password',
-                                  backgroundColor: Colors.red,
-                                  colorText: Colors.white,
-                                  duration: Duration(
-                                    milliseconds: 1000,
-                                  ),
-                                );
-                              }
-                            },
-                          ).catchError((error) {
+                        } else if (GetUtils.isEmail(emailController.text) ==
+                            false) {
+                          if (!Get.isSnackbarOpen) {
                             Get.snackbar(
                               'WARNING',
-                              'Login failed',
+                              'Please enter a valid email',
                               backgroundColor: Colors.red,
                               colorText: Colors.white,
                               duration: Duration(
-                                milliseconds: 2000,
+                                milliseconds: 1000,
                               ),
+                            );
+                          }
+                        } else if (!CheckFormatRes.isPasswordValid(
+                            passwordController.text)) {
+                          if (!Get.isSnackbarOpen) {
+                            Get.snackbar(
+                              'WARNING',
+                              'Please enter a valid password',
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                              duration: Duration(
+                                milliseconds: 1000,
+                              ),
+                            );
+                          }
+                        } else {
+                          User userReq = User(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          );
+
+                          UserApi.LoginAPI(userReq).then((loginResponse) {
+                            // Cast loginResponse to the correct type, e.g., LoginResponse
+                            final response = loginResponse as LoginResponse;
+                            final userList = response.user;
+                            final token = response.token;
+
+                            print('Token: $token');
+                            print('User Id: ${userList[0].id}');
+
+                            if (userList[0].id != null && userList[0].id != 0) {
+                              // Set user data in shared preferences
+                              PrefRes prefRes = PrefRes();
+                              TokenStorageService tokenStorageService =
+                                  TokenStorageService();
+
+                              // Set user data
+                              User user = userList[0];
+                              prefRes.setUserData(user).then((_) {
+                                // Set user data in UserData
+                                userData.setId(user.id ?? 0);
+                                userData.setEmail(user.email ?? '');
+                                userData.setUsername(user.username ?? '');
+                                userData.userFullname.value =
+                                    user.userFullname ?? '';
+                                userData.userBirthday.value =
+                                    user.userBirthday ?? '';
+                                userData.userGender.value =
+                                    user.userGender ?? 0;
+                                userData.userProfile.value =
+                                    user.userProfile ?? '';
+                              });
+
+                              // Save token
+                              // String token = response.headers['authorization']; // Remove or fix this line if response is not available
+                              tokenStorageService.saveToken(token ?? '');
+
+                              // Set isLogin = true in SharedPreferences
+                              prefRes.setIsLoggedIn(true).then((_) {
+                                // Navigate to MainHomeUI
+                                Get.defaultDialog(
+                                  title: 'SUCCESS',
+                                  middleText: 'Login successful',
+                                  backgroundColor: Colors.green,
+                                  titleStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                  middleTextStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                  barrierDismissible:
+                                      false, // ป้องกันการปิด dialog โดยการแตะนอกกรอบ
+                                  onConfirm: () {
+                                    Get.back(); // ปิด dialog ก่อน
+                                    // ใช้ Future.delayed เพื่อให้แน่ใจว่า dialog ปิดแล้ว
+                                    Future.delayed(Duration(milliseconds: 100),
+                                        () {
+                                      Get.offAll(
+                                          () => MainHomeUI(currentIndex: 2));
+                                    });
+                                  },
+                                  textConfirm: 'OK',
+                                  confirmTextColor: Colors.white,
+                                  buttonColor: Colors.green,
+                                );
+                              });
+                            } else {
+                              Get.snackbar(
+                                'Error',
+                                userList[0].toString(),
+                                snackPosition: SnackPosition.TOP,
+                                backgroundColor: Colors.red.withOpacity(0.8),
+                                colorText: Colors.white,
+                              );
+                            }
+                          }).catchError((error) {
+                            Get.snackbar(
+                              'Error',
+                              'An error occurred while logging in: $error',
+                              snackPosition: SnackPosition.TOP,
+                              backgroundColor: Colors.red.withOpacity(0.8),
+                              colorText: Colors.white,
                             );
                           });
                         }
@@ -269,7 +367,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       TextButton(
                         onPressed: () {
                           Get.to(
-                            SignUpUI(),
+                            () => SignUpUI(),
                           );
                         },
                         child: Text(
@@ -281,7 +379,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

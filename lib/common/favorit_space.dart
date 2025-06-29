@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/Parking_Ui/parking_ui.dart';
+import 'package:intelligent_parking_management_with_ai/screens/parking_screen/view_parking_ui.dart';
 import 'package:intelligent_parking_management_with_ai/utils/color_res.dart';
 
 class FavoritSpaceCommon extends StatefulWidget {
@@ -29,7 +29,7 @@ class _FavoritSpaceCommonState extends State<FavoritSpaceCommon> {
     return GestureDetector(
       onTap: () {
         Get.to(
-          ParkingUi(),
+          ViewParkingUI(),
         );
       },
       child: Container(

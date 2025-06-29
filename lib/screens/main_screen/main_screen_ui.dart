@@ -1,32 +1,44 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers, prefer_const_constructors
+// ignore_for_file: no_leading_underscores_for_local_identifiers, prefer_const_constructors, prefer_final_fields
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/bookmark_sub_screen_ui.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/home_sub_screen_ui.dart';
-import 'package:intelligent_parking_management_with_ai/views/subviews/ProfilePage.dart'
-    as profile;
-import 'package:intelligent_parking_management_with_ai/views/subviews/user_sub_screen_ui.dart'
-    as user;
+import 'package:intelligent_parking_management_with_ai/screens/main_screen/bookmark_ui.dart';
+import 'package:intelligent_parking_management_with_ai/screens/main_screen/home_ui.dart';
+import 'package:intelligent_parking_management_with_ai/screens/main_screen/user_ui.dart';
+import 'package:intelligent_parking_management_with_ai/screens/profile_screen/profile_ui.dart';
+import 'package:intelligent_parking_management_with_ai/utils/Pref_res.dart';
 
 class MainHomeUI extends StatefulWidget {
-  final bool isSignedIn;
-  const MainHomeUI({super.key, this.isSignedIn = false});
+  final int currentIndex;
+  const MainHomeUI({super.key, this.currentIndex = 0});
 
   @override
   State<MainHomeUI> createState() => _MainHomeUIState();
 }
 
 class _MainHomeUIState extends State<MainHomeUI> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+  PrefRes _prefRes = PrefRes();
+  bool isSignedIn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.currentIndex;
+    _prefRes.getIsLoggedIn().then((value) {
+      setState(() {
+        isSignedIn = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     List _currentShow = [
-      HomeSubScreenUI(),
-      BookmarkSubScreenUI(),
-      widget.isSignedIn ? profile.ProfilePage() : user.UserSubScreenUI(),
+      HomeUI(),
+      BookmarkUI(),
+      isSignedIn ? ProfileUI() : UserUI(),
     ];
 
     return Scaffold(
@@ -67,7 +79,9 @@ class _MainHomeUIState extends State<MainHomeUI> {
                   });
                 },
                 tabs: [
-                  GButton(icon: FontAwesomeIcons.house),
+                  GButton(
+                    icon: FontAwesomeIcons.house,
+                  ),
                   GButton(
                       icon: _currentIndex == 2
                           ? FontAwesomeIcons.solidBookmark

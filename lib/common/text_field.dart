@@ -11,6 +11,7 @@ class TextFieldCommon extends StatefulWidget {
   final bool? isPassword;
   final Icon? icon;
   final Widget? onPressed;
+  final TextInputType? keyboardType;
 
   const TextFieldCommon({
     super.key,
@@ -20,6 +21,7 @@ class TextFieldCommon extends StatefulWidget {
     this.isPassword = false,
     this.icon,
     this.onPressed,
+    this.keyboardType,
   });
 
   @override
@@ -40,6 +42,7 @@ class _TextFieldCommonState extends State<TextFieldCommon> {
     return TextField(
       controller: widget.controller,
       obscureText: _isPasswordVisible,
+      keyboardType: widget.keyboardType ?? TextInputType.text,
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(

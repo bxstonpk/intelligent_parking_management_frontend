@@ -10,6 +10,7 @@ class ColorRes {
   static const Color backColor = Color(0xFF000000);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color stockColor = Color(0xFFC4C4C4);
+  static const Color redColor = Color(0xFFF44336);
 
   static Color buttonColor(BuildContext context) {
     return Theme.of(context).brightness == Brightness.light

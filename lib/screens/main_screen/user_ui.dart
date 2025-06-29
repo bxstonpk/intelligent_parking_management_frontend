@@ -5,14 +5,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intelligent_parking_management_with_ai/common/button_route.dart';
 import 'package:intelligent_parking_management_with_ai/screens/sign_in_screen/sign_in_ui.dart';
 
-class UserSubScreenUI extends StatefulWidget {
-  const UserSubScreenUI({super.key});
+class UserUI extends StatefulWidget {
+  const UserUI({super.key});
 
   @override
-  State<UserSubScreenUI> createState() => _UserSubScreenUIState();
+  State<UserUI> createState() => _UserUIState();
 }
 
-class _UserSubScreenUIState extends State<UserSubScreenUI> {
+class _UserUIState extends State<UserUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

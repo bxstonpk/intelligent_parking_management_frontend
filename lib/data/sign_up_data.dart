@@ -10,4 +10,16 @@ class SignUpData extends GetxController {
   var userGender = 0.obs;
   var userProfile = ''.obs;
   var userProfileSelect = ''.obs;
+
+  // Setters for user data
+  void clearSignUpData() {
+    email.value = '';
+    password.value = '';
+    username.value = '';
+    userFullName.value = '';
+    userBirthday.value = '';
+    userGender.value = 0;
+    userProfile.value = '';
+    userProfileSelect.value = '';
+  }
 }

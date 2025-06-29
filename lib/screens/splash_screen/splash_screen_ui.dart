@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intelligent_parking_management_with_ai/screens/main_screen/main_screen_ui.dart';
 import 'dart:async';
-
-import 'package:intelligent_parking_management_with_ai/views/main_home_ui.dart';
 
 class SplashScreenUI extends StatefulWidget {
   const SplashScreenUI({super.key});
